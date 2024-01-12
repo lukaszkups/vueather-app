@@ -7,6 +7,14 @@
   font-weight: normal;
 }
 
+.card {
+  background: var(--color-white);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  padding: var(--size-m);
+  box-shadow: var(--shadow);
+}
+
 @media (min-width: 1024px) {
   body {
     display: flex;

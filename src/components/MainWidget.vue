@@ -2,7 +2,8 @@
 import WeatherWidget from './WeatherWidget.vue';
 </script>
 <template>
-  <div class="main-widget">
+  <div class="main-widget card">
     <weather-widget />
   </div>
 </template>
+<style></style>
