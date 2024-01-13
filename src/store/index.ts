@@ -40,7 +40,7 @@ export const useMainStore = defineStore('main', () => {
 
   const selectedTimezone = computed(() => {
     if (weather.value?.timezone) {
-      return `${weather.value.timezone > 0 ? '+' : '-'}${Math.floor(weather.value.timezone/1800)}`;
+      return `${weather.value.timezone > 0 ? '+' : ''}${Math.floor(weather.value.timezone/1800)}h`;
     } else {
       return 'n/a';
     }

@@ -33,9 +33,10 @@ const currentWeather = computed(() => {
   return mainStore.weather?.weather[0].main || 'noData';
 });
 
-const currentOpenWeatherIcon = computed(() => {
-  return mainStore.weather?.weather[0].icon || ''
-});
+// Commented out, has been made for testing
+// const currentOpenWeatherIcon = computed(() => {
+//   return mainStore.weather?.weather[0].icon || ''
+// });
 
 // Methods
 
@@ -87,7 +88,7 @@ onBeforeUnmount(() => {
             </span>
           </div>
         </div>
-        <div class="col col--75">
+        <div class="col col--75 col--main-weather-info-details">
           <weather-details-section />
         </div>
       </div>
@@ -115,14 +116,16 @@ onBeforeUnmount(() => {
   margin-left: -40px;
 }
 
+.row .col.col--main-weather-info,
 .col--main-weather-info {
   width: 225px;
   min-width: 225px;
   max-width: 225px !important;
+  overflow: visible;
 }
 
 .city-name {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 900;
   line-height: 1em;
 }
@@ -144,7 +147,6 @@ onBeforeUnmount(() => {
   position: relative;
   overflow: hidden;
   min-height: 10rem;
-  margin-top: -15px;
 
   span {
     overflow: hidden;
@@ -155,6 +157,65 @@ onBeforeUnmount(() => {
     animation: floating 5s ease-in infinite;
     position: absolute;
     margin-left: -40px;
+    margin-top: -10px;
+  }
+}
+
+@media screen and (max-width: 735px) {
+  .row .col.col--main-weather-info,
+  .col--main-weather-info {
+    width: 50%;
+    min-width: 50%;
+    max-width: 50% !important;
+
+    .city-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-bottom: var(--size-s);
+    }
+  }
+
+  .row .col.col--75.col--main-weather-info-details,
+  .col--main-weather-info-details {
+    flex: 1;
+    max-width: 50% !important;
+  }
+
+  .current-time span {
+    float: none;
+    margin-left: 35%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .col--main-weather-info-details {
+    display: none;
+  }
+
+  .main-widget {
+    display: block;
+    width: 100%;
+    min-width: 350px;
+    margin: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    
+    & > .row {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .col--main-weather-info {
+    display: inline-block;
+    margin: 0 auto;
+  }
+
+  .current-time span {
+    float: right;
+    margin-left: auto;
   }
 }
 </style>

@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { useMainStore } from '@/store';
 import { computed } from 'vue';
+import { useMainStore } from '@/store';
+import SearchInput from './SearchInput.vue'
 
 // Setup
 
 const mainStore = useMainStore();
+
+// Computed
 
 const tiles = computed(() => {
   return [
@@ -28,6 +31,13 @@ const tiles = computed(() => {
 </script>
 <template>
   <div class="weather-details-section-wrapper">
+    <div class="row weather-details-section search-input-wrapper">
+      <div class="col col-detail-tile"></div>
+      <div class="col col-detail-tile"></div>
+      <div class="col col-detail-tile">
+        <search-input />
+      </div>
+    </div>
     <div 
       v-for="(tilesRow, tilesRowIndex) in tiles"
       :key="tilesRowIndex"
@@ -38,7 +48,7 @@ const tiles = computed(() => {
         :key="tile.id"
         class="col col-detail-tile"
       >
-        <meteo-icon :icon="tile.icon" />
+        <meteo-icon v-if="tile.icon" :icon="tile.icon" />
         <span v-if="tile.label">{{ tile.label }}:</span> {{ tile.value }}
       </div>
     </div>
@@ -61,6 +71,49 @@ const tiles = computed(() => {
 
   .col-detail-tile {
     min-width: 200px;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .weather-details-section {
+    .col-detail-tile {
+      flex: 1;
+      max-width: 50%;
+      min-width: 50%;
+
+      &:last-of-type:not(:contain(.search-input-wrapper)) {
+        display: none;
+      }
+    }
+  }
+
+  .search-input-wrapper {
+    .col:nth-child(2) {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 735px) {
+  .weather-details-section {
+    display: block;
+    margin-bottom: 0;
+
+    .col-detail-tile {
+      display: block;
+      max-width: 100%;
+      min-width: 200px;
+    }
+
+    &-wrapper {
+      margin-bottom: var(--size-l);
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .weather-details-section {
+    display: none;
   }
 }
 </style>

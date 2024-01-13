@@ -5,7 +5,7 @@ export const iconsDict: IKeyable = {
   Thunderstorm: 'P',
   Drizzle: 'L',
   Rain: 'R',
-  Snow: 'W',
+  Snow: 'X',
   Mist: 'E',
   Smoke: '9',
   Haze: 'E',
