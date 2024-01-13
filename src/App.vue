@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { onBeforeMount } from 'vue';
-import MainWidget from './components/MainWidget.vue';
 import { useMainStore } from './store';
-import { getQueryParameter } from './helpers/converters';
+import { getQueryParameter } from '@/helpers/utils';
+import MainWidget from './components/MainWidget.vue';
+import ToastNotifications from './components/ToastNotifications.vue';
 
 // Setup
 
@@ -15,8 +16,9 @@ onBeforeMount(() => {
   if (location) {
     mainStore.city = location;
   }
-})
+});
 </script>
 <template>
   <main-widget />
+  <toast-notifications />
 </template>

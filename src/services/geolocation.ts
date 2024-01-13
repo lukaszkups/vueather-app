@@ -1,3 +1,4 @@
+// Not being used anywhere, TBC
 export default async function getCityCoords(city: string) {
   try {
     const getCityCoords = await fetch(
