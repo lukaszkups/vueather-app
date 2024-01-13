@@ -1,18 +1,21 @@
 import type { IKeyable } from "./interfaces";
 
+// based on https://www.alessioatzeni.com/meteocons/ -> https://www.alessioatzeni.com/meteocons/res/img/screen-font.png
 export const iconsDict: IKeyable = {
-  Thunderstorm: 'fa-solid fa-cloud-bolt',
-  Drizzle: 'fa-solid fa-cloud-rain',
-  // Drizzle: 'fa-umbrella', // alt :)
-  Rain: 'fa-solid fa-cloud-showers-heavy',
-  Snow: 'fa-regular fa-snowflake',
-  Mist: 'fa-solid fa-smog',
-  Smoke: 'fa-solid fa-smog',
-  Haze: 'fa-solid fa-smog',
-  Dust: 'fa-solid fa-smog',
-  Fog: 'fa-solid fa-smog',
-  Squall: 'fa-solid fa-wind',
-  Tornado: 'fa-solid fa-tornado',
-  Clear: 'fa-regular fa-sun',
-  Clouds: 'fa-solid fa-cloud-sun',
+  Thunderstorm: 'P',
+  Drizzle: 'L',
+  Rain: 'R',
+  Snow: 'W',
+  Mist: 'E',
+  Smoke: '9',
+  Haze: 'E',
+  Dust: 'E',
+  Fog: 'M',
+  Squall: 'Q',
+  Tornado: 'F',
+  Clear: 'B',
+  Clouds: 'N',
+  Sunrise: 'A',
+  Sunset: 'C',
+  noData: ')'
 }

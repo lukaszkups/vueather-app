@@ -6,4 +6,9 @@ import WeatherWidget from './WeatherWidget.vue';
     <weather-widget />
   </div>
 </template>
-<style></style>
+<style lang="scss">
+.main-widget {
+  border-radius: var(--border-radius-xl);
+  padding: var(--size-l);
+}
+</style>
