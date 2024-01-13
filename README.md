@@ -1,6 +1,15 @@
 # vueather-app
 
-This template should help get you started developing with Vue 3 in Vite.
+This repository has been made to showcase my Vue.js 3 skills for recruitment processes.
+
+
+## Setup
+
+Register your own account at [https://openweathermap.com](https://openweathermap.com) and create API key, which needs to be put inside `.env.example` file. (Rename it afterwards to `.env` file!)
+
+Application fetch some remote data from Open Weather Map API (weather) and delayed news notifications (Random Wiki articles API endpoint).
+
+You can set your own starting location via query url, e.g. `http://localhost:5173/?city=New Mexico`.
 
 ## Recommended IDE Setup
 
