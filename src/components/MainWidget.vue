@@ -9,6 +9,6 @@ import WeatherWidget from './WeatherWidget.vue';
 <style lang="scss">
 .main-widget {
   border-radius: var(--border-radius-xl);
-  padding: var(--size-l);
+  padding: var(--size-l) var(--size-l) 0 var(--size-l);
 }
 </style>

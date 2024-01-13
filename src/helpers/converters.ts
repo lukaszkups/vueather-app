@@ -41,3 +41,19 @@ export const getNiceTime = (date: Date) => {
   const timeInHHMMFormat = `${formattedHours}:${formattedMinutes}`;
   return timeInHHMMFormat;
 }
+
+export const degreesToWorldDirection = (degrees: number) => {
+  // Define wind directions and their corresponding degree ranges
+  const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+  const degreeRanges = [22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5];
+
+  // Find the index of the direction based on the degree
+  const directionIndex = degreeRanges.findIndex((range, index) => {
+    const nextRange = index === degreeRanges.length - 1 ? 360 + degreeRanges[0] : degreeRanges[index + 1];
+    return degrees >= range && degrees < nextRange;
+  });
+
+  // Use the direction index to get the corresponding direction string
+  const windDirection = directions[directionIndex];
+  return windDirection;
+}

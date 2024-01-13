@@ -31,7 +31,11 @@ const currentTime = computed(() => {
 
 const currentWeather = computed(() => {
   return mainStore.weather?.weather[0].main || 'noData';
-})
+});
+
+const currentOpenWeatherIcon = computed(() => {
+  return mainStore.weather?.weather[0].icon || ''
+});
 
 // Methods
 
@@ -67,11 +71,20 @@ onBeforeUnmount(() => {
     <div v-if="appData.loading" class="loading-dots">Loading<span></span></div>
     <div v-else>
       <div class="row">
-        <div class="col col--25">
-          <h2 class="city-name">{{ mainStore.city }}</h2>
-          <p class="current-time">{{ currentTime }}</p>
+        <div class="col col--25 col--main-weather-info">
+          <h2 class="city-name">
+            <!-- Commented out, has been made for testing -->
+            <!-- <ow-icon class="h2-ow-icon" :icon="currentOpenWeatherIcon" /> -->
+            {{ mainStore.city }}
+          </h2>
+          <p class="current-time">
+            {{ currentTime }}
+            <span class="float-right current-weather-description">{{ mainStore.currentWeatherDescription }}</span>
+          </p>
           <div class="current-weather-icon-wrapper">
-            <meteo-icon :icon="currentWeather" size="5rem" />
+            <span>
+              <meteo-icon :icon="currentWeather" size="5rem" />
+            </span>
           </div>
         </div>
         <div class="col col--75">
@@ -82,6 +95,32 @@ onBeforeUnmount(() => {
   </div>
 </template>
 <style lang="scss">
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-5px);
+  }
+  75% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.h2-ow-icon {
+  position: absolute;
+  margin-left: -40px;
+}
+
+.col--main-weather-info {
+  width: 225px;
+  min-width: 225px;
+  max-width: 225px !important;
+}
+
 .city-name {
   font-size: 3rem;
   font-weight: 900;
@@ -93,8 +132,29 @@ onBeforeUnmount(() => {
   font-size: 1rem;
 }
 
+.current-weather-description {
+  text-transform: capitalize;
+  text-align: right;
+  margin-left: var(--size-s);
+}
+
 .current-weather-icon-wrapper {
   width: 100%;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 10rem;
+  margin-top: -15px;
+
+  span {
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .meteo-icon:not([data-icon=')']) {
+    animation: floating 5s ease-in infinite;
+    position: absolute;
+    margin-left: -40px;
+  }
 }
 </style>

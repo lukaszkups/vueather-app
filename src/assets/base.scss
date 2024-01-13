@@ -22,12 +22,12 @@
   --size-xl: 32px;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+h1, h2, h3, h4, h5, p {
   margin: 0;
-  font-weight: normal;
+}
+
+span {
+  margin: auto;
 }
 
 body {
@@ -55,4 +55,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  place-items: center;
 }

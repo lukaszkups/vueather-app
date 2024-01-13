@@ -17,5 +17,8 @@ export const iconsDict: IKeyable = {
   Clouds: 'N',
   Sunrise: 'A',
   Sunset: 'C',
+  Cog: 'G',
+  Temp: "'",
+  Compass: '(',
   noData: ')'
 }

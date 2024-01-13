@@ -37,6 +37,7 @@ const computedStyle = computed(() => {
 <style lang="scss">
 .meteo-icon {
   font-style: normal;
+  vertical-align: middle;
 }
 
 [data-icon]:before {
