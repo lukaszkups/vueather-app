@@ -57,3 +57,9 @@ export const degreesToWorldDirection = (degrees: number) => {
   const windDirection = directions[directionIndex];
   return windDirection;
 }
+
+export const getQueryParameter = (paramName: string) => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(paramName);
+}
