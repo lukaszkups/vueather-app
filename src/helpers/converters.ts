@@ -9,15 +9,6 @@ export const parseUnixToLocalTime = (date: Date, timezoneShiftInSeconds: number)
   }
 };
 
-export const parseKmToMiles = (km: number) => (km / 1.609).toFixed(1);
-
-export const parseTimeTo12HourFormat = (time: string) => {
-  const timeArr = time.split(":");
-  const hours = Number(timeArr[0]) % 12;
-  const minutes = timeArr[1];
-  return `${hours || 12}:${minutes}`;
-};
-
 export const getNiceTime = (date: Date) => {
   const hours = date.getHours();
   const minutes = date.getMinutes();

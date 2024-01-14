@@ -4,8 +4,6 @@ import { degreesToWorldDirection, getNiceTime } from '@/helpers/converters';
 import { getCurrentTimeWithoutOffset, getYourTimezoneOffset } from '@/helpers/utils';
 import type { IOpenWeatherData } from '@/helpers/interfaces';
 
-
-
 export const useMainStore = defineStore('main', () => {
   const city = ref('Poznań');
   const loading = ref(false);
