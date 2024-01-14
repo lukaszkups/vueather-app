@@ -22,3 +22,8 @@ export const iconsDict: IKeyable = {
   Compass: '(',
   noData: ')'
 }
+
+export enum notificationTypeEnum {
+  info = 'info',
+  error = 'error',
+}

@@ -1,3 +1,5 @@
+import type { notificationTypeEnum } from "./dictionaries";
+
 export interface IKeyable {
   [key: string | number]: any;
 }
@@ -80,4 +82,11 @@ export interface IRandomWikiArticle {
   },
   extract: string;
   extract_html: string;
+}
+
+export interface IToastNotification {
+  id: number | string;
+  title: string;
+  url: string;
+  type: notificationTypeEnum;
 }

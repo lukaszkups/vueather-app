@@ -57,3 +57,7 @@ export const degreesToWorldDirection = (degrees: number) => {
   const windDirection = directions[directionIndex];
   return windDirection;
 }
+
+export const capitalizeFirstLetter = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}

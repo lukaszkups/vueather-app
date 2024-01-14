@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
 import { useNotificationsStore } from '@/store/notifications';
-import { getRandomNotification } from '@/services/notifications';
-import { sleep } from '@/helpers/utils';
+import { notificationTypeEnum } from '@/helpers/dictionaries';
 
 // Setup
 
@@ -10,40 +8,23 @@ const notifyStore = useNotificationsStore();
 
 // Methods
 
-const checkForNotifications = async () => {
-  const item = await getRandomNotification();
-  notifyStore.notifications.push(item);
-}
-
-const goToArticle = (url: string, notificationId: string) => {
-  window.open(url, '_blank');
+const goToNotificationUrl = (url: string, notificationId: string | number) => {
+  if (url.length) {
+    window.open(url, '_blank');
+  }
   notifyStore.removeNotification(notificationId);
 }
-
-// Lifecycle
-
-// Simulating dummy notification fetch over time
-onMounted(async () => {
-  await sleep(1000);
-  await checkForNotifications();
-  await sleep(2000);
-  await checkForNotifications();
-  await sleep(2000);
-  await checkForNotifications();
-});
 </script>
 <template>
 <div class="toast-notifications-wrapper">
   <div 
     v-for="notification in notifyStore.notifications"
-    :key="`${notification.namespace.id}-${notification.wikibase_item}`"
+    :key="notification.id"
+    :class="notificationTypeEnum[notification.type]"
     class="toast-notification"
+    @click.prevent="goToNotificationUrl(notification.url, notification.id)"
   >
-    <p>LATEST NEWS! 
-      <a 
-        @click.prevent="goToArticle(notification.content_urls.desktop.page, notification.wikibase_item)"
-      >{{ notification.title }}</a>
-    </p>
+    <p>{{ notification.title }}</p>
   </div>
 </div>
 </template>
@@ -52,20 +33,47 @@ onMounted(async () => {
   position: fixed;
   bottom: var(--size-l);
   right: var(--size-l);
-  
+  margin-left: var(--size-l);
+  overflow: hidden;
+  width: 40vw;
+  box-sizing: border-box;
+
   .toast-notification {
-    width: 30vw;
+    box-sizing: border-box;
+    width: 100%;
     padding: var(--size-m);
     background: var(--color-black);
     color: var(--color-white);
     margin-bottom: var(--size-s);
     border-radius: var(--border-radius);
+    border: 1px solid var(--color-white);
+    cursor: pointer;
+    transition: background-color 0.5s, border-color 0.5s, color 0.5s;
 
-    a {
-      color: var(--color-white);
-      text-decoration: underline;
-      cursor: pointer;
+    &:hover {
+      border-color: var(--color-black);
+      color: var(--color-black);
+      transition: background-color 0.5s, border-color 0.5s, color 0.5s;
     }
+
+    &.info {
+      background-color: var(--color-notification-info);
+    }
+    &.error {
+      background-color: var(--color-notification-error);
+    }
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .toast-notifications-wrapper {
+    width: 75vw;
+  }
+}
+
+@media screen and (max-width: 735px) {
+  .toast-notifications-wrapper {      
+    width: 90vw;
   }
 }
 </style>

@@ -1,20 +1,27 @@
 <script setup lang="ts">
 import { getWeatherData } from '@/services/weather';
 import { useMainStore } from '@/store';
+import { ref } from 'vue';
 
 // Setup
 
 const mainStore = useMainStore();
-const locationQuery = defineModel({ default: '' })
+const locationQuery = defineModel({ default: '' });
+const lastQuery = ref('');
 
 // Methods
 
 const updateLocation = async () => {
   try {
-    if (locationQuery.value.length) {
+    // compare lastQuery with input value to not duplicate API call if user hit Enter before
+    if (locationQuery.value.length && lastQuery.value !== locationQuery.value) {
+      lastQuery.value = locationQuery.value;
       mainStore.loading = true;
-      mainStore.weather = await getWeatherData(locationQuery.value);
-      mainStore.city = locationQuery.value;
+      const weatherData = await getWeatherData(locationQuery.value);
+      if (weatherData) {
+        mainStore.weather = weatherData;
+        mainStore.city = locationQuery.value;
+      }
       mainStore.loading = false;
     }
   } catch (err) {

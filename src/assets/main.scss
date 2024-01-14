@@ -1,5 +1,37 @@
 @import './base.scss';
 
+// gradient animation generated via: https://www.gradient-animator.com/
+body {
+  background: linear-gradient(135deg, #15bfd7, #09b1c9, #4fc2ff);
+  background-size: 600% 600%;
+
+  -webkit-animation: backgroundAnimation 30s ease infinite;
+  -moz-animation: backgroundAnimation 30s ease infinite;
+  -o-animation: backgroundAnimation 30s ease infinite;
+  animation: backgroundAnimation 30s ease infinite;
+}
+
+@-webkit-keyframes backgroundAnimation {
+  0%{background-position:50% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:50% 0%}
+}
+@-moz-keyframes backgroundAnimation {
+  0%{background-position:50% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:50% 0%}
+}
+@-o-keyframes backgroundAnimation {
+  0%{background-position:50% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:50% 0%}
+}
+@keyframes backgroundAnimation {
+  0%{background-position:50% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:50% 0%}
+}
+
 #app {
   width: 90vw;
   margin: 0 auto;

@@ -7,8 +7,8 @@ describe('Rendering test', () => {
     cy.get('.main-widget .main-widget');
   });
 
-  it('shows the title of default queried city', () => {
+  it('shows the title of default queried place', () => {
     cy.visit('/');
-    cy.contains('h2.city-name', 'Poznań');
+    cy.contains('h2.location-name', 'Poznań');
   });
 });
