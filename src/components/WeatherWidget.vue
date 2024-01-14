@@ -9,7 +9,7 @@ import WeatherDetailsSection from './WeatherDetailsSection.vue';
 // Setup
 
 export interface IWeatherWidget {
-  timeInterval?: Number;
+  timeInterval?: ReturnType<typeof setTimeout> | number;
   loading: boolean;
 }
 
@@ -46,7 +46,7 @@ const getWeather = async () => {
 }
 
 const startTimeInterval = () => {
-  appData.timeInterval = setInterval(() => {
+  appData.timeInterval = window.setInterval(() => {
     mainStore.utcTimeNow = getCurrentTimeWithoutOffset();
   }, 60000);
 }
