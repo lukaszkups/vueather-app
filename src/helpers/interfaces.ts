@@ -31,8 +31,8 @@ export interface IOpenWeatherData {
     type: number;
     id: number;
     country: string;
-    sunrise: string;
-    sunset: string;
+    sunrise: number;
+    sunset: number;
   };
   coord: {
     lon: number;

@@ -1,6 +1,7 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { degreesToWorldDirection, getCurrentTimeWithoutOffset, getNiceTime } from '@/helpers/converters';
+import { degreesToWorldDirection, getNiceTime } from '@/helpers/converters';
+import { getCurrentTimeWithoutOffset, getYourTimezoneOffset } from '@/helpers/utils';
 import type { IOpenWeatherData } from '@/helpers/interfaces';
 
 
@@ -22,7 +23,8 @@ export const useMainStore = defineStore('main', () => {
 
   const sunrise = computed(() => {
     if (weather.value?.sys.sunrise) {
-      const d = new Date(Number(weather.value.sys.sunrise) * 1000);
+
+      const d = new Date((weather.value.sys.sunrise + weather.value.timezone + getYourTimezoneOffset()) * 1000);
       return getNiceTime(d);
     } else {
       return 'n/a';
@@ -31,7 +33,7 @@ export const useMainStore = defineStore('main', () => {
 
   const sunset = computed(() => {
     if (weather.value?.sys.sunset) {
-      const d = new Date(Number(weather.value.sys.sunset) * 1000);
+      const d = new Date((weather.value.sys.sunset + weather.value.timezone + getYourTimezoneOffset()) * 1000);
       return getNiceTime(d);
     } else {
       return 'n/a';
@@ -40,7 +42,7 @@ export const useMainStore = defineStore('main', () => {
 
   const selectedTimezone = computed(() => {
     if (weather.value?.timezone) {
-      return `${weather.value.timezone > 0 ? '+' : ''}${Math.floor(weather.value.timezone/1800)}h`;
+      return `${weather.value.timezone > 0 ? '+' : ''}${Math.floor(weather.value.timezone/3600)}h`;
     } else {
       return 'n/a';
     }

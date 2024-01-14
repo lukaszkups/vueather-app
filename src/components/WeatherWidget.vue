@@ -2,7 +2,8 @@
 import { computed, onBeforeMount, onBeforeUnmount, reactive } from 'vue';
 import { useMainStore } from '@/store';
 import { getWeatherData } from '@/services/weather';
-import { parseUnixToLocalTime, getCurrentTimeWithoutOffset, getNiceTime } from '@/helpers/converters';
+import { parseUnixToLocalTime, getNiceTime, capitalizeFirstLetter } from '@/helpers/converters';
+import { getCurrentTimeWithoutOffset } from '@/helpers/utils';
 import WeatherDetailsSection from './WeatherDetailsSection.vue';
 
 // Setup
@@ -76,7 +77,7 @@ onBeforeUnmount(() => {
           <h2 class="city-name">
             <!-- Commented out, has been made for testing -->
             <!-- <ow-icon class="h2-ow-icon" :icon="currentOpenWeatherIcon" /> -->
-            {{ mainStore.city }}
+            {{ capitalizeFirstLetter(mainStore.city) }}
           </h2>
           <p class="current-time">
             {{ currentTime }}

@@ -9,6 +9,6 @@ describe('Rendering test', () => {
 
   it('shows the title of default queried place', () => {
     cy.visit('/');
-    cy.contains('h2.location-name', 'Poznań');
+    cy.contains('h2.city-name', 'Poznań');
   });
 });

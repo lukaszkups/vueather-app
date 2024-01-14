@@ -18,19 +18,6 @@ export const parseTimeTo12HourFormat = (time: string) => {
   return `${hours || 12}:${minutes}`;
 };
 
-export const getCurrentTimeWithoutOffset = () => {
-  const localTime = new Date();
-  const utcTime = new Date(
-    localTime.getUTCFullYear(),
-    localTime.getUTCMonth(),
-    localTime.getUTCDate(),
-    localTime.getUTCHours(),
-    localTime.getUTCMinutes(),
-    localTime.getUTCSeconds()
-  );
-  return utcTime;
-}
-
 export const getNiceTime = (date: Date) => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
